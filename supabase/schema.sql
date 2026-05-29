@@ -371,8 +371,13 @@ create policy "Allow public read of profiles" on public.profiles
 create policy "Allow users to update own profile" on public.profiles
   for update using (auth.uid() = id);
 
-create policy "Allow admins to delete or update all profiles" on public.profiles
-  for all using (
+create policy "Allow admins to update all profiles" on public.profiles
+  for update using (
+    exists (select 1 from public.profiles where id = auth.uid() and role in ('admin', 'super_admin'))
+  );
+
+create policy "Allow admins to delete all profiles" on public.profiles
+  for delete using (
     exists (select 1 from public.profiles where id = auth.uid() and role in ('admin', 'super_admin'))
   );
 
