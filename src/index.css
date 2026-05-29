@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  body {
+    @apply bg-zinc-950 text-zinc-100 font-sans antialiased selection:bg-orange-500 selection:text-white;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-zinc-900;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-700 rounded-full hover:bg-orange-500 transition-colors;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  @apply bg-zinc-900/80 backdrop-blur-md border border-zinc-800/60;
+}
+.glass-card {
+  @apply bg-zinc-900/40 backdrop-blur-sm border border-zinc-800/40 rounded-xl transition-all duration-300 hover:border-orange-500/30 hover:bg-zinc-900/60 shadow-premium hover:shadow-premium-hover;
+}
+
+/* Micro-animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px -3px rgba(234, 88, 12, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px 2px rgba(234, 88, 12, 0.4);
+  }
+}
+
+.glow-btn-active {
+  animation: pulse-glow 3s infinite ease-in-out;
+}
+
+.card-lift {
+  @apply transition-all duration-300 hover:-translate-y-1;
+}
+
+/* Chat bubble shapes */
+.chat-bubble-client {
+  @apply bg-orange-600 text-white rounded-2xl rounded-tr-none px-4 py-2.5 max-w-[80%] shadow-sm;
+}
+.chat-bubble-tradie {
+  @apply bg-zinc-800 text-zinc-100 rounded-2xl rounded-tl-none px-4 py-2.5 max-w-[80%] shadow-sm;
+}
+.chat-bubble-system {
+  @apply bg-zinc-900/80 text-zinc-400 text-xs rounded-lg px-3 py-1.5 text-center my-2 border border-zinc-800 mx-auto max-w-[90%] font-medium;
+}
+
+/* Remove default browser width limit from Vite template */
+#root {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  text-align: left !important;
+  border: none !important;
+  min-height: 100vh !important;
+}
